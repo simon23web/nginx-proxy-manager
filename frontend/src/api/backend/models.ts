@@ -105,6 +105,19 @@ export interface ProxyLocation {
 	forwardPort: number;
 }
 
+export interface CloudflareTunnelMeta {
+	enabled?: boolean;
+	name?: string;
+	tunnelId?: string;
+	publicHostname?: string;
+	serviceTokenId?: string;
+	serviceTokenSecret?: string;
+}
+
+export interface ProxyHostMeta extends Record<string, any> {
+	cloudflareTunnel?: CloudflareTunnelMeta;
+}
+
 export interface ProxyHost {
 	id: number;
 	createdOn: string;
@@ -120,7 +133,7 @@ export interface ProxyHost {
 	cachingEnabled: boolean;
 	blockExploits: boolean;
 	advancedConfig: string;
-	meta: Record<string, any>;
+	meta: ProxyHostMeta;
 	allowWebsocketUpgrade: boolean;
 	http2Support: boolean;
 	enabled: boolean;

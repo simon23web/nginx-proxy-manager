@@ -75,6 +75,19 @@ export default function Table({ data, isFetching, onEdit, onDelete, onDisableTog
 					return <TrueFalseFormatter value={info.getValue()} trueLabel="online" falseLabel="offline" />;
 				},
 			}),
+			columnHelper.accessor((row: any) => row.meta?.cloudflareTunnel?.enabled, {
+				id: "cloudflareTunnel",
+				header: "Cloudflare Tunnel",
+				cell: (info: any) => {
+					return (
+						<TrueFalseFormatter
+							value={Boolean(info.getValue())}
+							trueLabel="enabled"
+							falseLabel="disabled"
+						/>
+					);
+				},
+			}),
 			columnHelper.display({
 				id: "id",
 				cell: (info: any) => {

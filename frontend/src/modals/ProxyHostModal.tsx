@@ -253,6 +253,162 @@ const ProxyHostModal = EasyModal.create(({ id, visible, remove }: Props) => {
 														</Field>
 													</div>
 												</div>
+												<div className="mb-3 rounded border p-3">
+													<div className="d-flex align-items-start justify-content-between gap-3">
+														<div>
+															<h4 className="mb-1">Cloudflare Tunnel</h4>
+															<p className="mb-0 text-secondary">
+																Use a Cloudflare Tunnel to route traffic to this proxied
+																service without exposing inbound ports.
+															</p>
+														</div>
+														<Field name="meta.cloudflareTunnel.enabled" type="checkbox">
+															{({ field }: any) => (
+																<label className="form-check form-check-single form-switch m-0">
+																	<input
+																		{...field}
+																		id="meta.cloudflareTunnel.enabled"
+																		className={cn("form-check-input", {
+																			"bg-lime": field.checked,
+																		})}
+																		type="checkbox"
+																	/>
+																</label>
+															)}
+														</Field>
+													</div>
+													<Field name="meta.cloudflareTunnel.enabled">
+														{({ field: tunnelToggle }: any) => (
+															<div className="row mt-3">
+																<div className="col-md-6">
+																	<Field
+																		name="meta.cloudflareTunnel.name"
+																		validate={validateString(1, 255)}
+																	>
+																		{({ field, form }: any) => (
+																			<div className="mb-3">
+																				<label
+																					className="form-label"
+																					htmlFor="meta.cloudflareTunnel.name"
+																				>
+																					Tunnel Name
+																				</label>
+																				<input
+																					{...field}
+																					id="meta.cloudflareTunnel.name"
+																					type="text"
+																					className={`form-control ${form.errors.meta?.cloudflareTunnel?.name && form.touched.meta?.cloudflareTunnel?.name ? "is-invalid" : ""}`}
+																					placeholder="production-app"
+																					disabled={!tunnelToggle.value}
+																				/>
+																			</div>
+																		)}
+																	</Field>
+																</div>
+																<div className="col-md-6">
+																	<Field
+																		name="meta.cloudflareTunnel.tunnelId"
+																		validate={validateString(1, 255)}
+																	>
+																		{({ field, form }: any) => (
+																			<div className="mb-3">
+																				<label
+																					className="form-label"
+																					htmlFor="meta.cloudflareTunnel.tunnelId"
+																				>
+																					Tunnel ID
+																				</label>
+																				<input
+																					{...field}
+																					id="meta.cloudflareTunnel.tunnelId"
+																					type="text"
+																					className={`form-control ${form.errors.meta?.cloudflareTunnel?.tunnelId && form.touched.meta?.cloudflareTunnel?.tunnelId ? "is-invalid" : ""}`}
+																					placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+																					disabled={!tunnelToggle.value}
+																				/>
+																			</div>
+																		)}
+																	</Field>
+																</div>
+																<div className="col-md-6">
+																	<Field
+																		name="meta.cloudflareTunnel.publicHostname"
+																		validate={validateString(1, 255)}
+																	>
+																		{({ field, form }: any) => (
+																			<div className="mb-3">
+																				<label
+																					className="form-label"
+																					htmlFor="meta.cloudflareTunnel.publicHostname"
+																				>
+																					Public Hostname
+																				</label>
+																				<input
+																					{...field}
+																					id="meta.cloudflareTunnel.publicHostname"
+																					type="text"
+																					className={`form-control ${form.errors.meta?.cloudflareTunnel?.publicHostname && form.touched.meta?.cloudflareTunnel?.publicHostname ? "is-invalid" : ""}`}
+																					placeholder="app.example.com"
+																					disabled={!tunnelToggle.value}
+																				/>
+																			</div>
+																		)}
+																	</Field>
+																</div>
+																<div className="col-md-6">
+																	<Field
+																		name="meta.cloudflareTunnel.serviceTokenId"
+																		validate={validateString(1, 255)}
+																	>
+																		{({ field, form }: any) => (
+																			<div className="mb-3">
+																				<label
+																					className="form-label"
+																					htmlFor="meta.cloudflareTunnel.serviceTokenId"
+																				>
+																					Service Token ID
+																				</label>
+																				<input
+																					{...field}
+																					id="meta.cloudflareTunnel.serviceTokenId"
+																					type="text"
+																					className={`form-control ${form.errors.meta?.cloudflareTunnel?.serviceTokenId && form.touched.meta?.cloudflareTunnel?.serviceTokenId ? "is-invalid" : ""}`}
+																					placeholder="Optional"
+																					disabled={!tunnelToggle.value}
+																				/>
+																			</div>
+																		)}
+																	</Field>
+																</div>
+																<div className="col-md-12">
+																	<Field
+																		name="meta.cloudflareTunnel.serviceTokenSecret"
+																		validate={validateString(1, 255)}
+																	>
+																		{({ field, form }: any) => (
+																			<div className="mb-0">
+																				<label
+																					className="form-label"
+																					htmlFor="meta.cloudflareTunnel.serviceTokenSecret"
+																				>
+																					Service Token Secret
+																				</label>
+																				<input
+																					{...field}
+																					id="meta.cloudflareTunnel.serviceTokenSecret"
+																					type="password"
+																					className={`form-control ${form.errors.meta?.cloudflareTunnel?.serviceTokenSecret && form.touched.meta?.cloudflareTunnel?.serviceTokenSecret ? "is-invalid" : ""}`}
+																					placeholder="Optional"
+																					disabled={!tunnelToggle.value}
+																				/>
+																			</div>
+																		)}
+																	</Field>
+																</div>
+															</div>
+														)}
+													</Field>
+												</div>
 												<AccessField />
 												<div className="my-3">
 													<h4 className="py-2">
